@@ -17,6 +17,8 @@ Modern React component library built with TypeScript, SCSS modules, and Storyboo
 
 ## 📦 Installation
 
+[![npm version](https://badge.fury.io/js/@u4aew%2Freact-component-publishing-guide.svg)](https://www.npmjs.com/package/@u4aew/react-component-publishing-guide)
+
 ```bash
 npm install @u4aew/react-component-publishing-guide
 ```
