@@ -1,4 +1,4 @@
-import './button.css';
+import styles from './Button.module.scss';
 
 export interface ButtonProps {
   /** Is this the principal call to action on the page? */
@@ -21,11 +21,13 @@ export const Button = ({
   label,
   ...props
 }: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  const modeClass = primary ? styles.primary : styles.secondary;
+  const sizeClass = styles[size];
+  
   return (
     <button
       type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
+      className={[styles.button, sizeClass, modeClass].join(' ')}
       style={{ backgroundColor }}
       {...props}
     >
