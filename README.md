@@ -5,7 +5,7 @@ Modern React component library built with TypeScript, SCSS modules, and Storyboo
 ## 🚀 Features
 
 - **React 19** with full TypeScript support
-- **SCSS Modules** for scoped styling
+- **SCSS Modules** for scoped styling with automatic CSS injection
 - **Storybook** for component development and documentation
 - **Vite** for fast builds and development
 - **ESLint** for code quality
@@ -23,7 +23,6 @@ npm install @u4aew/react-component-publishing-guide
 
 ```tsx
 import { Button } from '@u4aew/react-component-publishing-guide';
-import '@u4aew/react-component-publishing-guide/dist/style.css';
 
 function App() {
   return (

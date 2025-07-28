@@ -23,7 +23,7 @@ export const Button = ({
 }: ButtonProps) => {
   const modeClass = primary ? styles.primary : styles.secondary;
   const sizeClass = styles[size];
-  
+
   return (
     <button
       type="button"
