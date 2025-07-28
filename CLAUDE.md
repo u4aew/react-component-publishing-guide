@@ -4,45 +4,59 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-**Build & Development:**
-- `npm run dev` - Start Vite development server with HMR
-- `npm run build` - Build for production (runs TypeScript compilation + Vite build)
-- `npm run preview` - Preview production build locally
-- `npm run lint` - Run ESLint on the codebase
-
-**Storybook:**
-- `npm run storybook` - Start Storybook development server on port 6006
+**Primary Development:**
+- `npm run storybook` - Start Storybook development server on port 6006 (main development environment)
 - `npm run build-storybook` - Build Storybook for production
 
+**Build & Linting:**
+- `npm run build` - Build library for production (TypeScript compilation + Vite build)
+- `npm run lint` - Run ESLint on the codebase
+- `npm run preview` - Preview production build locally
+
 **Testing:**
-- Tests are configured to run through Storybook using Vitest with Playwright browser testing
-- Test configuration is in `vite.config.ts` with browser testing enabled
-- Story-based tests are automatically generated from Storybook stories
+- Tests run through Storybook using Vitest with Playwright browser testing
+- Story-based tests automatically generated from Storybook stories
+- Browser testing configured with Chromium in headless mode
 
 ## Architecture
 
-This is a React component library built with:
-- **Vite** as the build tool and development server
-- **TypeScript** for type safety
-- **Storybook** as the primary development and documentation environment
-- **Vitest + Playwright** for browser-based testing integrated with Storybook
+This is a **React component library** focused on reusable UI components:
 
-**Key Structure:**
-- `src/components/` - Contains reusable React components with TypeScript interfaces
-- `src/stories/` - Contains Storybook stories that demonstrate component usage
-- Components follow the pattern: `ComponentName.tsx` + `component.css` in `/components/`
-- Stories import components from `../components/` and define usage examples
-- Each component exports TypeScript interfaces for props (e.g., `ButtonProps`)
+**Tech Stack:**
+- **React 19** + **TypeScript** for component development
+- **Vite** as build tool (library mode)
+- **Storybook** as primary development and documentation environment
+- **Vitest + Playwright** for browser-based component testing
+- **ESLint** for code quality
+
+**Current Structure:**
+```
+src/
+├── components/
+│   └── ComponentName/
+│       ├── ComponentName.tsx     # Component implementation
+│       ├── componentname.css     # Component styles
+│       └── __stories__/          # Stories hidden inside component
+│           └── ComponentName.stories.ts
+└── stories/
+    ├── Configure.mdx            # General documentation
+    └── assets/                  # Documentation assets
+```
 
 **Component Development Pattern:**
-- Components are built as pure functions with TypeScript interfaces
-- CSS is scoped per component (e.g., `button.css` for Button component)
-- Storybook stories define component variations and serve as living documentation
-- Components use CSS classes with BEM-like naming (e.g., `storybook-button--primary`)
+- Each component has its own folder in `src/components/`
+- Components are self-contained with TypeScript interfaces
+- Stories are co-located in `__stories__/` subfolder within each component
+- CSS uses BEM-like naming with `storybook-` prefix
+- All components export typed props interfaces
+
+**Current Components:**
+- **Button** - Primary UI component with variants (primary/secondary, small/medium/large)
 
 ## Configuration Notes
 
-- TypeScript config uses project references (`tsconfig.json` → `tsconfig.app.json` + `tsconfig.node.json`)
-- ESLint configured for TypeScript with React hooks and Storybook rules
-- Vite config includes Storybook test integration with browser testing setup
-- Storybook configured with accessibility, docs, and vitest addons
+- **No traditional React app** - this is purely a component library
+- Storybook config searches all `src/**/*.stories.*` files automatically
+- TypeScript uses project references for optimal compilation
+- Vite config includes Storybook test integration
+- ESLint configured for React hooks, TypeScript, and Storybook rules
