@@ -1,7 +1,13 @@
 {
   "name": "react-component-lib",
   "description": "Modern React component library with TypeScript and SCSS modules",
-  "keywords": ["react", "components", "typescript", "ui", "storybook"],
+  "keywords": [
+    "react",
+    "components",
+    "typescript",
+    "ui",
+    "storybook"
+  ],
   "author": "u4aew",
   "license": "MIT",
   "repository": {
@@ -10,7 +16,7 @@
   },
   "homepage": "https://u4aew.github.io/react-component-publishing-guide",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
