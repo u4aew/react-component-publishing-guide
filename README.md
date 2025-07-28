@@ -113,21 +113,6 @@ npm run analyze  # Opens detailed bundle analysis
 npm run size-report  # Console and JSON report
 ```
 
-### Usage Analytics
-Integrates with popular analytics services automatically:
-```tsx
-import { useAnalytics } from '@u4aew/react-component-publishing-guide';
-
-const { trackMount, trackClick } = useAnalytics('Button');
-// Works with Google Analytics, Amplitude, Mixpanel
-```
-
-**Supported Services:**
-- **Google Analytics** - `gtag('event', 'component_mount', ...)`
-- **Amplitude** - `amplitude.logEvent('Component mount', ...)`  
-- **Mixpanel** - `mixpanel.track('Component mount', ...)`
-- **Custom endpoint** - via configuration
-
 ## 🔄 CI/CD
 
 The project includes automated workflows:
