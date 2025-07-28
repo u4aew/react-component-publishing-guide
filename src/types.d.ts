@@ -18,16 +18,4 @@ declare module '*.module.scss' {
   export default content;
 }
 
-// Глобальные переменные для аналитики
-declare global {
-  const __LIBRARY_VERSION__: string;
-  
-  interface Window {
-    __COMPONENT_ANALYTICS__?: any[];
-    gtag?: (...args: any[]) => void;
-    amplitude?: any;
-    mixpanel?: any;
-  }
-}
-
 export {};
