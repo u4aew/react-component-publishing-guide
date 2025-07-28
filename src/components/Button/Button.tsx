@@ -1,6 +1,4 @@
 import styles from './Button.module.scss';
-import { useAnalytics } from '../../utils/analytics';
-import { useEffect } from 'react';
 
 export interface ButtonProps {
   /** Is this the principal call to action on the page? */
@@ -24,19 +22,10 @@ export const Button = ({
   onClick,
   ...props
 }: ButtonProps) => {
-  // Аналитика использования
-  const { trackMount, trackClick } = useAnalytics('Button');
-
-  // Отслеживаем монтирование компонента
-  useEffect(() => {
-    trackMount({ primary, size, hasCustomColor: !!backgroundColor });
-  }, [trackMount, primary, size, backgroundColor]);
-
   const modeClass = primary ? styles.primary : styles.secondary;
   const sizeClass = styles[size];
 
   const handleClick = () => {
-    trackClick('button');
     onClick?.();
   };
 
