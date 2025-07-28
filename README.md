@@ -16,14 +16,14 @@ Modern React component library built with TypeScript, SCSS modules, and Storyboo
 ## 📦 Installation
 
 ```bash
-npm install react-component-lib
+npm install @u4aew/react-component-publishing-guide
 ```
 
 ## 🎯 Usage
 
 ```tsx
-import { Button } from 'react-component-lib';
-import 'react-component-lib/dist/style.css';
+import { Button } from '@u4aew/react-component-publishing-guide';
+import '@u4aew/react-component-publishing-guide/dist/style.css';
 
 function App() {
   return (
