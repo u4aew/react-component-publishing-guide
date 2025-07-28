@@ -16,7 +16,7 @@
   },
   "homepage": "https://u4aew.github.io/react-component-publishing-guide",
   "private": false,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
