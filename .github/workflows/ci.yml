@@ -31,3 +31,44 @@ jobs:
 
       - name: Build Storybook
         run: npm run build-storybook
+
+      - name: Bundle Size Analysis
+        run: npm run size-report
+
+      - name: Upload bundle analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle-analysis
+          path: |
+            dist/bundle-analysis.html
+            dist/size-report.json
+
+      - name: Comment Bundle Size on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = JSON.parse(fs.readFileSync('dist/size-report.json', 'utf8'));
+            
+            const comment = `## 📦 Bundle Size Analysis
+            
+            | Format | Size | Gzipped |
+            |--------|------|---------|
+            | **Total** | **${report.total.kb} KB** | **${report.total.gzipped.kb} KB** |
+            
+            ### Files:
+            ${report.files.map(file => 
+              `| ${file.name} | ${file.sizeKb} KB | ${file.gzippedKb} KB |`
+            ).join('\n')}
+            
+            ${report.total.kb > 50 ? '⚠️ Bundle size is getting large' : '✅ Bundle size looks good'}
+            
+            [View detailed analysis](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });

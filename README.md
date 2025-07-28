@@ -12,6 +12,8 @@ Modern React component library built with TypeScript, SCSS modules, and Storyboo
 - **Automated CI/CD** with GitHub Actions
 - **NPM Publishing** workflow
 - **GitHub Pages** deployment for Storybook
+- **Bundle Size Analysis** with automatic reports
+- **Usage Analytics** with integrations for Google Analytics, Amplitude, Mixpanel
 
 ## 📦 Installation
 
@@ -66,6 +68,8 @@ npm run storybook
 | `npm run build` | Build library for production |
 | `npm run lint` | Run ESLint |
 | `npm run preview` | Preview production build |
+| `npm run analyze` | Analyze bundle size and open report |
+| `npm run size-report` | Generate detailed size report |
 
 ## 📚 Components
 
@@ -98,13 +102,38 @@ src/
 └── index.ts                      # Main export file
 ```
 
+## 📊 Analytics & Monitoring
+
+### Bundle Size Analysis
+Automatic bundle size tracking with visual reports:
+```bash
+npm run analyze  # Opens detailed bundle analysis
+npm run size-report  # Console and JSON report
+```
+
+### Usage Analytics
+Integrates with popular analytics services automatically:
+```tsx
+import { useAnalytics } from '@u4aew/react-component-publishing-guide';
+
+const { trackMount, trackClick } = useAnalytics('Button');
+// Works with Google Analytics, Amplitude, Mixpanel
+```
+
+**Supported Services:**
+- **Google Analytics** - `gtag('event', 'component_mount', ...)`
+- **Amplitude** - `amplitude.logEvent('Component mount', ...)`  
+- **Mixpanel** - `mixpanel.track('Component mount', ...)`
+- **Custom endpoint** - via configuration
+
 ## 🔄 CI/CD
 
 The project includes automated workflows:
 
-- **CI**: Runs on every push/PR (linting, building)
+- **CI**: Runs on every push/PR (linting, building, bundle analysis)
 - **NPM Publishing**: Triggered by releases or manual dispatch
 - **Storybook Deploy**: Automatically deploys to GitHub Pages
+- **Bundle Reports**: Automatic PR comments with size changes
 
 ## 📖 Documentation
 

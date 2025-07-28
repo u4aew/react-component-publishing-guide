@@ -3,6 +3,8 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
+import { visualizer } from 'rollup-plugin-visualizer';
+import { readFileSync } from 'fs';
 
 // https://vite.dev/config/
 import path from 'node:path';
@@ -10,11 +12,24 @@ import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
+// Читаем версию из package.json
+const packageJson = JSON.parse(readFileSync(resolve(dirname, 'package.json'), 'utf-8'));
+const version = packageJson.version;
+
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
+  define: {
+    __LIBRARY_VERSION__: JSON.stringify(version),
+  },
   plugins: [
     react(),
-    cssInjectedByJsPlugin()
+    cssInjectedByJsPlugin(),
+    visualizer({
+      filename: 'dist/bundle-analysis.html',
+      open: false,
+      gzipSize: true,
+      brotliSize: true,
+    })
   ],
   css: {
     modules: {
